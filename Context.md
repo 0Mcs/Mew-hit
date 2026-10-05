@@ -12,7 +12,9 @@ con muros, **sin ratas en el nivel** y repisas arregladas. Sin apagar laptop.
 
 **Versión:** **57 puntos** en verde (`VERIFICACION OK: 0 errores`, sin leaks
 con `--verbose`), mutación validada en TODOS los puntos tocados (48/56/57
-+ reworks 20/21/22/26/37/44/45/53). README a 57; `plan.md` NO se toca.
++ reworks 20/21/22/26/37/44/45/53). README simplificado a lo esencial; el
+plan histórico (`Mew hit v0.2 plan.md`) se eliminó del repo a petición de
+Hermes (queda en el historial de git).
 
 **Contenido de v0.9 (lo nuevo):**
 
@@ -43,7 +45,8 @@ con `--verbose`), mutación validada en TODOS los puntos tocados (48/56/57
 **Archivos clave:** `verificar.gd` (57), `scenes/{test_level(82),casa(88),
 player,enemigo(6),gato,pistol,objetivo,hud}.tscn`, `scripts/{player,enemigo,
 proyectil,objetivo,hud,decorado,motas,dev_luces,psx_filtro.gdshader,pistol,
-gato,sonido,partida,vida}.gd`, `README.md` (57 ✓), `plan.md` (histórico).
+gato,sonido,partida,vida}.gd`, `README.md` (simple ✓). Sin plan histórico
+en el repo (borrado, en git).
 
 **Verificado y funcionando** (carpeta del proyecto,
 `$GODOT = C:\Users\Ed\Downloads\godot472\Godot_v4.7.2-stable_win64_console.exe`):
@@ -191,3 +194,13 @@ v0.9 se hizo entera en sesión principal (todo acoplado a tests).
   + asserts 48; mutaciones exactas y revertidas; 57/57 + `--verbose`.
 - Repasamos/decidimos: nada nuevo que documentar en README (fixes);
   pendiente jugar (melee vertical, marco).
+
+## [2026-10-05] Entrada #8
+- Empezamos haciendo: subida a GitHub (https://github.com/0Mcs/Mew-hit,
+  público, commit 67503c4) + limpieza: README simplificado y plan
+  histórico borrado del repo (vive en git).
+- Problemas que aparecieron: ninguno, `gh` no instalado (repo creado a
+  mano en la web).
+- Qué hicimos: `.gitignore` (fuera `.godot/` y `.opencode/`), rama main,
+  push verificado (local == remoto).
+- Repasamos/decidimos: abrir sesión nueva con el prompt de handoff.
