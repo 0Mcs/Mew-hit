@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/pistol.tscn" id="2_pistol"]
+[ext_resource type="Script" path="res://scripts/vida.gd" id="3_vida"]
+[ext_resource type="PackedScene" path="res://scenes/gato.tscn" id="4_gato"]
+
+[sub_resource type="CapsuleShape3D" id="shape_capsule"]
+radius = 0.08
+height = 0.32
+
+[node name="Jugador" type="CharacterBody3D" groups=["jugador"]]
+script = ExtResource("1_player")
+collision_layer = 2
+collision_mask = 9
+altura_agachado = 0.19
+bajada_agachado = 0.06
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.16, 0)
+shape = SubResource("shape_capsule")
+
+[node name="Modelo" parent="." instance=ExtResource("4_gato")]
+color_pelo = Color(0.28, 0.28, 0.32, 1)
+color_ojos = Color(0.4, 1, 0.3, 1)
+
+[node name="Pistola" parent="Modelo" instance=ExtResource("2_pistol")]
+position = Vector3(0.1, 0.26, -0.08)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+position = Vector3(0, 0.3, 0)
+spring_length = 1.3
+collision_mask = 1
+
+[node name="Camara3D" type="Camera3D" parent="SpringArm3D"]
+fov = 75.0
+current = true
+
+[node name="RayCastPared" type="RayCast3D" parent="."]
+position = Vector3(0, 0.17, 0)
+target_position = Vector3(0, 0, -0.6)
+
+[node name="RayCastTecho" type="RayCast3D" parent="."]
+position = Vector3(0, 0.17, 0)
+target_position = Vector3(0, 0.6, 0)
+
+[node name="Vida" type="Node" parent="."]
+script = ExtResource("3_vida")

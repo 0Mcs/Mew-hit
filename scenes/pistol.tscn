@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/pistol.gd" id="1_pistol"]
+
+[sub_resource type="StandardMaterial3D" id="Material_pistola"]
+albedo_color = Color(0.6, 0.6, 0.65, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_pistola"]
+material = SubResource("Material_pistola")
+size = Vector3(0.05, 0.07, 0.14)
+
+[sub_resource type="StandardMaterial3D" id="Material_metal"]
+albedo_color = Color(0.35, 0.37, 0.4, 1)
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="Mesh_canon"]
+material = SubResource("Material_metal")
+top_radius = 0.008
+bottom_radius = 0.008
+height = 0.09
+
+[sub_resource type="StandardMaterial3D" id="Material_grip"]
+albedo_color = Color(0.2, 0.2, 0.22, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="Mesh_grip"]
+material = SubResource("Material_grip")
+size = Vector3(0.03, 0.08, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="Material_fogonazo"]
+albedo_color = Color(1, 0.9, 0.6, 1)
+roughness = 1.0
+emission_enabled = true
+emission = Color(1, 0.85, 0.5, 1)
+emission_energy_multiplier = 6.0
+
+[sub_resource type="SphereMesh" id="Mesh_fogonazo"]
+material = SubResource("Material_fogonazo")
+radius = 0.025
+height = 0.03
+
+[sub_resource type="StandardMaterial3D" id="Material_trazador"]
+transparency = 1
+albedo_color = Color(1, 0.9, 0.6, 1)
+roughness = 1.0
+emission_enabled = true
+emission = Color(1, 0.9, 0.6, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="Mesh_trazador"]
+material = SubResource("Material_trazador")
+size = Vector3(0.01, 0.01, 1)
+
+[node name="Pistola" type="Node3D"]
+script = ExtResource("1_pistol")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, -0.1)
+mesh = SubResource("Mesh_pistola")
+
+[node name="Canon" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.015, -0.15)
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("Mesh_canon")
+
+[node name="Empunadura" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.05, 0.02)
+rotation = Vector3(0.3, 0, 0)
+mesh = SubResource("Mesh_grip")
+
+[node name="Fogonazo" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.015, -0.20)
+visible = false
+mesh = SubResource("Mesh_fogonazo")
+
+[node name="LuzFogonazo" type="OmniLight3D" parent="."]
+position = Vector3(0, 0.015, -0.20)
+visible = false
+light_energy = 2.5
+light_color = Color(1, 0.85, 0.5, 1)
+omni_range = 0.8
+
+[node name="Trazador" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("Mesh_trazador")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+position = Vector3(0, 0, -0.23)
+collision_mask = 13
+target_position = Vector3(0, 0, -100)

@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/objetivo.gd" id="1_objetivo"]
+[ext_resource type="Script" path="res://scripts/vida.gd" id="2_vida"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raton"]
+size = Vector3(0.13, 0.12, 0.26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuerpo"]
+albedo_color = Color(0.62, 0.5, 0.52, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cola"]
+albedo_color = Color(0.85, 0.55, 0.6, 1)
+roughness = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_cuerpo"]
+material = SubResource("StandardMaterial3D_cuerpo")
+radius = 0.05
+height = 0.075
+
+[sub_resource type="SphereMesh" id="SphereMesh_cabeza"]
+material = SubResource("StandardMaterial3D_cuerpo")
+radius = 0.032
+height = 0.058
+
+[sub_resource type="SphereMesh" id="SphereMesh_oreja"]
+material = SubResource("StandardMaterial3D_cuerpo")
+radius = 0.016
+height = 0.03
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cola"]
+material = SubResource("StandardMaterial3D_cola")
+top_radius = 0.004
+bottom_radius = 0.007
+height = 0.13
+
+[node name="Objetivo" type="CharacterBody3D" groups=["objetivo"]]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_objetivo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.06, 0)
+shape = SubResource("BoxShape3D_raton")
+
+[node name="Malla" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.045, -0.02)
+mesh = SubResource("SphereMesh_cuerpo")
+
+[node name="Cabeza" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.055, -0.095)
+mesh = SubResource("SphereMesh_cabeza")
+
+[node name="OrejaIzq" type="MeshInstance3D" parent="."]
+position = Vector3(-0.022, 0.075, -0.075)
+mesh = SubResource("SphereMesh_oreja")
+
+[node name="OrejaDer" type="MeshInstance3D" parent="."]
+position = Vector3(0.022, 0.075, -0.075)
+mesh = SubResource("SphereMesh_oreja")
+
+[node name="Cola" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.035, 0.1)
+rotation_degrees = Vector3(78, 0, 0)
+mesh = SubResource("CylinderMesh_cola")
+
+[node name="Vida" type="Node" parent="."]
+script = ExtResource("2_vida")

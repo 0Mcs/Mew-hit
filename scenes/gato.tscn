@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/gato.gd" id="1_gato"]
+
+[sub_resource type="StandardMaterial3D" id="mat_pelo"]
+albedo_color = Color(0.3, 0.31, 0.36, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_ojo"]
+albedo_color = Color(0.4, 1, 0.3, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.4, 1, 0.3, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="BoxMesh" id="malla_cuerpo"]
+material = SubResource("mat_pelo")
+size = Vector3(0.2, 0.16, 0.44)
+
+[sub_resource type="SphereMesh" id="malla_cabeza"]
+material = SubResource("mat_pelo")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxMesh" id="malla_hocico"]
+material = SubResource("mat_pelo")
+size = Vector3(0.08, 0.06, 0.08)
+
+[sub_resource type="SphereMesh" id="malla_ojo"]
+material = SubResource("mat_ojo")
+radius = 0.016
+height = 0.032
+
+[sub_resource type="BoxMesh" id="malla_oreja"]
+material = SubResource("mat_pelo")
+size = Vector3(0.045, 0.075, 0.03)
+
+[sub_resource type="BoxMesh" id="malla_cola"]
+material = SubResource("mat_pelo")
+size = Vector3(0.04, 0.16, 0.04)
+
+[sub_resource type="BoxMesh" id="malla_pata"]
+material = SubResource("mat_pelo")
+size = Vector3(0.06, 0.16, 0.06)
+
+[node name="Modelo" type="Node3D"]
+script = ExtResource("1_gato")
+scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="Cuerpo" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.24, 0)
+mesh = SubResource("malla_cuerpo")
+
+[node name="Cabeza" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.36, -0.24)
+mesh = SubResource("malla_cabeza")
+
+[node name="Hocico" type="MeshInstance3D" parent="Cabeza"]
+position = Vector3(0, -0.03, -0.09)
+mesh = SubResource("malla_hocico")
+
+[node name="OjoIzquierdo" type="MeshInstance3D" parent="Cabeza"]
+position = Vector3(-0.045, 0.015, -0.085)
+mesh = SubResource("malla_ojo")
+
+[node name="OjoDerecho" type="MeshInstance3D" parent="Cabeza"]
+position = Vector3(0.045, 0.015, -0.085)
+mesh = SubResource("malla_ojo")
+
+[node name="OrejaIzquierda" type="MeshInstance3D" parent="Cabeza"]
+position = Vector3(-0.05, 0.1, -0.005)
+mesh = SubResource("malla_oreja")
+
+[node name="OrejaDerecha" type="MeshInstance3D" parent="Cabeza"]
+position = Vector3(0.05, 0.1, -0.005)
+mesh = SubResource("malla_oreja")
+
+[node name="Cola" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.36, 0.2)
+mesh = SubResource("malla_cola")
+
+[node name="Pata1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.07, 0.08, -0.16)
+mesh = SubResource("malla_pata")
+
+[node name="Pata2" type="MeshInstance3D" parent="."]
+position = Vector3(0.07, 0.08, -0.16)
+mesh = SubResource("malla_pata")
+
+[node name="Pata3" type="MeshInstance3D" parent="."]
+position = Vector3(-0.07, 0.08, 0.14)
+mesh = SubResource("malla_pata")
+
+[node name="Pata4" type="MeshInstance3D" parent="."]
+position = Vector3(0.07, 0.08, 0.14)
+mesh = SubResource("malla_pata")

@@ -1,0 +1,9 @@
+# Godot 4 (generado por el editor, no se versiona)
+.godot/
+
+# Tooling local de opencode (node_modules, logs)
+.opencode/
+
+# Windows
+Thumbs.db
+Desktop.ini
